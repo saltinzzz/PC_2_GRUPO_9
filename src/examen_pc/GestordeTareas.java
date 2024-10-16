@@ -1,17 +1,18 @@
 package examen_pc;
 
 import casopractico.PilaTarea;
+import casopractico.Tarea;
 
 public class GestordeTareas extends javax.swing.JFrame {
-    
-    
+
+    private PilaTarea.PilaDeTareas pilaDeTareas;
 
     public GestordeTareas() {
         initComponents();
+        pilaDeTareas = new PilaTarea().new PilaDeTareas();
     }
-    
-       
-   @SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -107,17 +108,25 @@ public class GestordeTareas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
-        
-             
+        String nombre = javax.swing.JOptionPane.showInputDialog("Nombre de la tarea:");
+        String prioridad = javax.swing.JOptionPane.showInputDialog("Prioridad (Alta/Media/Baja):");
+        Tarea tarea = new Tarea(nombre, prioridad);
+        pilaDeTareas.agregar(tarea);
+        txtArea.append("Agregada: " + tarea + "\n");
+
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        Tarea tareaEliminada = pilaDeTareas.eliminar();
+        if (tareaEliminada != null) {
+            txtArea.append("Eliminada: " + tareaEliminada + "\n");
+        } // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        // TODO add your handling code here:
+        String tareas = pilaDeTareas.mostrar();
+        txtArea.setText(tareas);// TODO add your handling code here:
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
@@ -125,15 +134,13 @@ public class GestordeTareas extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void BtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearActionPerformed
-        // TODO add your handling code here:
+        // Este botón podría servir para reiniciar la pila
+        pilaDeTareas = new PilaTarea().new PilaDeTareas();
+        txtArea.setText("Nueva pila creada.\n");// TODO add your handling code here:
     }//GEN-LAST:event_BtnCrearActionPerformed
 
-    public void agregar() {
-        
-        PilaTarea();
-        
-    }
-    
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
