@@ -25,6 +25,7 @@ public class GestordeTareas extends javax.swing.JFrame {
         BtnCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
@@ -33,12 +34,15 @@ public class GestordeTareas extends javax.swing.JFrame {
         txtArea.setRows(5);
         jScrollPane2.setViewportView(txtArea);
 
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 490, 290));
+
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 50));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +50,7 @@ public class GestordeTareas extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 120, 50));
 
         btnMostrar.setText("Mostrar");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -53,6 +58,7 @@ public class GestordeTareas extends javax.swing.JFrame {
                 btnMostrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 120, 50));
 
         BtnBuscar.setText("Buscar");
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +66,7 @@ public class GestordeTareas extends javax.swing.JFrame {
                 BtnBuscarActionPerformed(evt);
             }
         });
+        getContentPane().add(BtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, 50));
 
         BtnCrear.setText("Crear Pila");
         BtnCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -67,42 +74,7 @@ public class GestordeTareas extends javax.swing.JFrame {
                 BtnCrearActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMostrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnCrear)
-                        .addGap(0, 76, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(btnMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
+        getContentPane().add(BtnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 120, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,16 +93,29 @@ public class GestordeTareas extends javax.swing.JFrame {
         Tarea tareaEliminada = pilaDeTareas.eliminar();
         if (tareaEliminada != null) {
             txtArea.append("Eliminada: " + tareaEliminada + "\n");
+        } else {
+            txtArea.append("No hay tareas para eliminar.\n");
         } // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         String tareas = pilaDeTareas.mostrar();
-        txtArea.setText(tareas);// TODO add your handling code here:
+        if (tareas.trim().isEmpty()) {
+            txtArea.setText("No hay tareas en la pila.\n");
+        } else {
+            txtArea.setText(tareas);
+        }// TODO add your handling code here:
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        // TODO add your handling code here:
+        String nombre = javax.swing.JOptionPane.showInputDialog("Nombre de la tarea a buscar:");
+        Tarea tareaBuscada = pilaDeTareas.buscar(nombre);
+
+        if (tareaBuscada != null) {
+            txtArea.append("Tarea encontrada: " + tareaBuscada + "\n");
+        } else {
+            txtArea.append("Tarea no encontrada.\n");
+        } // TODO add your handling code here:
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void BtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearActionPerformed
@@ -138,8 +123,6 @@ public class GestordeTareas extends javax.swing.JFrame {
         pilaDeTareas = new PilaTarea().new PilaDeTareas();
         txtArea.setText("Nueva pila creada.\n");// TODO add your handling code here:
     }//GEN-LAST:event_BtnCrearActionPerformed
-
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
